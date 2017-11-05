@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -eu
+
 #
 # setup pyenv
 #
@@ -25,13 +26,23 @@ fi
 source ${_PROFILE}
 
 #
-# install anaconda
+# setup python 3.6 environment
+#
+PY_VERSION=`pyenv install --list| grep "^ *3.6\." | sort -t . -n | tail -n 1`
+
+pyenv install ${PY_VERSION}
+pyenv global ${ANACONDA_VERSION}
+pyenv rehash
+pip install jupyter matplotlib
+
+#
+# setup anaconda environment
 #
 ANACONDA_VERSION=`pyenv install --list | grep anaconda3 | sort -t . -n | tail -n 1 | sed -e 's/[ \f\n\r\t]//g'`
 
 pyenv install ${ANACONDA_VERSION}
-pyenv rehash
 pyenv global ${ANACONDA_VERSION}
+pyenv rehash
 
 eval echo 'alias conda-activate=\"source ${PYENV_ROOT}/versions/${ANACONDA_VERSION}/bin/activate\"' >> ${_BASHRC}
 eval echo 'alias conda-deactivate=\"source ${PYENV_ROOT}/versions/${ANACONDA_VERSION}/bin/deactivate\"' >> ${_BASHRC}

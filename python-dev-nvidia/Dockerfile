@@ -2,7 +2,10 @@ FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04
 MAINTAINER Naoki Saito <saito.naoki@nmiri.city.nagoya.jp>
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get upgrade -y \
-    && DEBIAN_FRONTEND=noninteractive apt-get install sudo git wget bzip2 vim -y
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y sudo git wget curl bzip2 vim \
+        make build-essential libssl-dev zlib1g-dev libbz2-dev \
+        libreadline-dev libsqlite3-dev llvm libncurses5-dev libncursesw5-dev \
+        xz-utils tk-dev
 ARG USER
 ###
 ### create user
