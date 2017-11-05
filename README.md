@@ -1,5 +1,5 @@
-# docker-python-dev
-a docker project for python development environment based on ubuntu (xenial)
+# docker-python-dev-nvidia
+Docker project for python development environment based on ubuntu (xenial) with NVIDIA GPU
 
 ## How to use
 1. build image
@@ -14,7 +14,7 @@ a docker project for python development environment based on ubuntu (xenial)
     ```
 
 1. start a new (or the existing) container and enter a bash shell in the container (I assume that your current directory is 
-"\<somewhere\>/docker-python-dev".)
+"\<somewhere\>/docker-python-dev-nvidia".)
 
     ```
     ./start_shell.sh
