@@ -21,6 +21,7 @@ WORKDIR /tmp
 ADD ./scripts ./
 RUN chmod +x setup_root.sh setup_user.sh \
     && chown $user:$user setup_user.sh \
+    && sync \
     && ./setup_root.sh
 USER $user
 WORKDIR /home/$user
