@@ -1,6 +1,7 @@
 version: '2'
 services:
   python-dev-nvidia:
+    image: nmirinagoyansaito/python-dev-nvidia
     build:
       context: python-dev-nvidia
       args:
