@@ -1,0 +1,11 @@
+version: '2'
+services:
+  python-dev-nvidia:
+    build:
+      context: python-dev-nvidia
+      args:
+        - USER
+    stdin_open: true
+    tty: true
+    volumes:
+       - ./workdir:/home/${USER}/workdir
