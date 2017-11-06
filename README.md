@@ -11,10 +11,19 @@ https://github.com/nmiri-nagoya-nsaito/docker-python-dev-nvidia
 1. GitHubから関連スクリプトのダウンロード
 
    以下のコマンドを実行するとカレントディレクトリに docker-python-dev-nvidia という名称のディレクトリができますので，そこに移動します．
+
     ```
     git clone https://github.com/nmiri-nagoya-nsaito/docker-python-dev-nvidia.git
     cd docker-python-dev-nvidia
     ```
+
+1. イメージをダウンロードする
+
+    ```
+    docker-compose pull tensorflow-nv
+    ```
+    
+    イメージをDockerHubからダウンロードします．ダウンロードが完了すると，実行を開始できます．
 
 1. コンテナのシェルに入る
 
