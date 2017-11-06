@@ -9,4 +9,14 @@ services:
     stdin_open: true
     tty: true
     volumes:
-       - ./workdir:/home/${USER}/workdir
+       - ./workdir/python-dev-nvidia:/home/${USER}/workdir
+  tensorflow-nv:
+    image: nmirinagoyansaito/tensorflow-nv
+    build:
+      context: tensorflow-nv
+    ports:
+     - "8888"
+    stdin_open: true
+    tty: true
+    volumes:
+       - ./workdir/tensorflow-nv:/home/${USER}/workdir
