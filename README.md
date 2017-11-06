@@ -1,57 +1,79 @@
-# docker-python-dev-nvidia
-Docker project for python development environment based on ubuntu (xenial) with NVIDIA GPU
+# docker-python-nvidia
 
-## How to use
-1. build image
+これは NVIDIA GPU 搭載マシンで Python や各種ディープラーニングのフレームワークを利用する環境のための Dockerプロジェクトです．
+Ubuntu 16.04 (Xenial) + CUDA8.0 + cuDNN 6.0 + pyenv + python 3.6.x + anaconda をベースにしています．
+
+## 使い方
+
+DockerHubからイメージを直接ダウンロードして利用することもできますが，実行する際はオプションで指定する項目が多くなるため docker-compose を利用するのが楽です．そのためのスクリプトをここで用意してありますので，それを利用する手順を示します．
+https://github.com/nmiri-nagoya-nsaito/docker-python-dev-nvidia
+
+1. GitHubから関連スクリプトのダウンロード
+
+   以下のコマンドを実行するとカレントディレクトリに docker-python-dev-nvidia という名称のディレクトリができますので，そこに移動します．
 
     ```
-    docker-compose build
+    git clone https://github.com/nmiri-nagoya-nsaito/docker-python-dev-nvidia.git
+    cd docker-python-dev-nvidia
     ```
-    If the image is already built and exists, add a "--no-cache" flag to command line.
+
+1. イメージをダウンロードする
+
+    ```
+    docker-compose pull tensorflow-nv
+    ```
     
-    ```
-    docker-compose build --no-cache
-    ```
+    イメージをDockerHubからダウンロードします．ダウンロードが完了すると，実行を開始できます．
 
-1. start a new (or the existing) container and enter a bash shell in the container (I assume that your current directory is 
-"\<somewhere\>/docker-python-dev-nvidia".)
+1. コンテナのシェルに入る
 
-    ```
-    ./start_shell.sh
-    ```
-
-1. exit from the container 
+    コンテナのシェルに入る場合，そのためのスクリプトが用意してありますのでそれを使います．
+    スクリプトの引数として， どのイメージを利用するか（python-dev-nvidia　とか　tensorflow-nv とか）を指定します．
 
     ```
-    # enter this command in the bash shell
-    exit
+    ./start_shell tensorflow-nv
     ```
+    
+    シェルから抜けるには exit コマンドを使います．シェルから抜けると，コンテナも停止します．
 
-1. stop container (but the container is not deleted)
-
-    ```
-    docker-compose stop
-    ```
-
-1. stop container (and the container is deleted)
+1. コンテナのデフォルト処理を起動する．
 
     ```
-    docker-compose down
+    docker-compose up -d nmirinagoyansaito/tensorflow-nv
     ```
 
-1. list the container in conjunction with this directory
+    イメージによってはコンテナのデフォルト処理を設定しているものがあり，その場合の起動方法です．　例えば tensorflow-nv の場合，　Jupyter Notebookが起動するように設定されています．それはコンテナ内でWebサーバとして動作しているため，利用する場合はWebブラウザからURLを指定してアクセスします．URLは以下のように確認します．
 
     ```
-    docker-compose ps
+    $ docker-compose ps
+                Name                               Command               State            Ports         
+    --------------------------------------------------------------------------------------------------------
+    dockerpythondevnvidia_tensorflow-nv_1   bash -c source /home/$user ...   Up      0.0.0.0:32778->8888/tcp
+    docker-compose logs
+    $ docker-compose logs
+    Attaching to dockerpythondevnvidia_tensorflow-nv_1
+    （中略）
+    tensorflow-nv_1      | [I 09:00:08.819 NotebookApp] The Jupyter Notebook is running at:
+    tensorflow-nv_1      | [I 09:00:08.819 NotebookApp] http://0.0.0.0:8888/?   token=7ae9e1bad56071170779dbe3851529c0d8e19b1669faffc4
+    （中略）
+    tensorflow-nv_1      |     Copy/paste this URL into your browser when you connect for the first time,
+    tensorflow-nv_1      |     to login with a token:
+    tensorflow-nv_1      |         http://0.0.0.0:8888/?token=7ae9e1bad56071170779dbe3851529c0d8e19b1669faffc4
     ```
 
-## Create a configuration file
+    以上からわかることは
+    * コンテナの8888番ポートがホストの32778番ポートに割り当てられていること
+    * Jupyter Notebook のサーバは http://0.0.0.0:8888/?token=7ae9e1bad56071170779dbe3851529c0d8e19b1669faffc4 というURLで待ち受けていること
+    です．　ホスト側のWebブラウザからアクセスするには上記URLの8888番の部分を32778に置き換えます．
 
-Because Ctrl-P is assigned for a part of detach operation, when working with shell, it is necessary to create the file ```~/.docker/config.json``` with the following contents:
+
+# 補足
+
+Ctrl-P が detach 操作に割り当てられているため，シェル作業でそれを利用することができません．それが困る場合は ```~/.docker/config.json``` ファイルに次のような項目を追記します．
 
 ```
 {
 	"detachKeys": "ctrl-\\"
 }
 ```
-In the above example, "ctrl-\\" can be replaced with other keys as you like.
+上の例では detach を "ctrl-\" に割り当て直すことで Ctrl-P を使えるようにしていますが，お好みで別のキーに割り当てることもできます．
