@@ -31,7 +31,7 @@ source ${_PROFILE}
 PY_VERSION=`pyenv install --list| grep "^ *3.6\." | sort -t . -n | tail -n 1`
 
 pyenv install ${PY_VERSION}
-pyenv global ${ANACONDA_VERSION}
+pyenv global ${PY_VERSION}
 pyenv rehash
 pip install jupyter matplotlib
 
