@@ -23,18 +23,17 @@ https://github.com/nmiri-nagoya-nsaito/docker-python-dev-nvidia
     docker-compose pull tensorflow-nv
     ```
     
-    イメージをDockerHubからダウンロードします．ダウンロードが完了すると，実行を開始できます．
+    イメージをDockerHubからダウンロードします．ダウンロードが完了すると，実行を開始できます．
 
 1. コンテナのシェルに入る
 
-    コンテナのシェルに入る場合，そのためのスクリプトが用意してありますのでそれを使います．
-    スクリプトの引数として， どのイメージを利用するか（python-dev-nvidia　とか　tensorflow-nv とか）を指定します．
+    コンテナのシェルに入る場合，そのためのスクリプトが用意してありますのでそれを使います．スクリプトの引数として， どのイメージを利用するか（python-dev-nvidia　とか　tensorflow-nv とか）を指定します．
 
     ```
     ./start_shell tensorflow-nv
     ```
     
-    シェルから抜けるには exit コマンドを使います．シェルから抜けると，コンテナも停止します．
+    シェルから抜けるには exit コマンドを使います．シェルから抜けると，コンテナも停止します．
 
 1. コンテナのデフォルト処理を起動する．
 
