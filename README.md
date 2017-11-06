@@ -30,7 +30,7 @@ https://github.com/nmiri-nagoya-nsaito/docker-python-dev-nvidia
 1. コンテナのデフォルト処理を起動する．
 
     ```
-    docker-compose up -d tensorflow-nv
+    docker-compose up -d nmirinagoyansaito/tensorflow-nv
     ```
 
     イメージによってはコンテナのデフォルト処理を設定しているものがあり，その場合の起動方法です．　例えば tensorflow-nv の場合，　Jupyter Notebookが起動するように設定されています．それはコンテナ内でWebサーバとして動作しているため，利用する場合はWebブラウザからURLを指定してアクセスします．URLは以下のように確認します．
