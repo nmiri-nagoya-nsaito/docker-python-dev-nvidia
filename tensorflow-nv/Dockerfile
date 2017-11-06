@@ -15,4 +15,3 @@ RUN eval "$(pyenv init -)" \
     && pyenv global $(pyenv versions --bare | grep "^ *3\.6\.") \
     && pyenv rehash \
     && pip install tensorflow
-CMD [ "bash", "-c", "source /home/$user/.profile && jupyter notebook --no-browser --port=8888 --ip=0.0.0.0 --notebook-dir=/home/$user/workdir"]
