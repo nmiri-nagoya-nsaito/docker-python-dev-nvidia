@@ -10,7 +10,7 @@ fi
 
 SERVICE=$1
 
-if [ "x$(docker-compose ps -q ${SERVICE})" = "x" ]; then
+if [ "x$(docker images -q --filter reference=*/${SERVICE})" = "x" ]; then
   docker-compose pull ${SERVICE}
 fi
 docker-compose up -d ${SERVICE}
