@@ -35,36 +35,24 @@ https://github.com/nmiri-nagoya-nsaito/docker-python-dev-nvidia
     
     シェルから抜けるには exit コマンドを使います．シェルから抜けると，コンテナも停止します．
 
-1. コンテナのデフォルト処理を起動する．
+1. tensorflowのコンテナを起動する．
 
     ```
-    docker-compose up -d nmirinagoyansaito/tensorflow-nv
+    ./start_tensorflow.sh
+    Creating network "dockerpythondevnvidia_default" with the default driver
+    Creating dockerpythondevnvidia_tensorflow-nv_1 ... 
+    Creating dockerpythondevnvidia_tensorflow-nv_1 ... done
+                    Name                     Command    State                        Ports                      
+    ------------------------------------------------------------------------------------------------------------
+    dockerpythondevnvidia_tensorflow-nv_1   /bin/bash   Up      0.0.0.0:32817->6006/tcp, 0.0.0.0:32816->8888/tcp
     ```
 
-    イメージによってはコンテナのデフォルト処理を設定しているものがあり，その場合の起動方法です．　例えば tensorflow-nv の場合，　Jupyter Notebookが起動するように設定されています．それはコンテナ内でWebサーバとして動作しているため，利用する場合はWebブラウザからURLを指定してアクセスします．URLは以下のように確認します．
+    tensorflow-nv イメージからコンテナを開始し，　その中の　Jupyter Notebook と Tensorboard を起動します．　それらはコンテナ内でWebサーバとして動作し，利用する場合はホストのWebブラウザからURLを指定してアクセスします．
 
-    ```
-    $ docker-compose ps
-                Name                               Command               State            Ports         
-    --------------------------------------------------------------------------------------------------------
-    dockerpythondevnvidia_tensorflow-nv_1   bash -c source /home/$user ...   Up      0.0.0.0:32778->8888/tcp
-    docker-compose logs
-    $ docker-compose logs
-    Attaching to dockerpythondevnvidia_tensorflow-nv_1
-    （中略）
-    tensorflow-nv_1      | [I 09:00:08.819 NotebookApp] The Jupyter Notebook is running at:
-    tensorflow-nv_1      | [I 09:00:08.819 NotebookApp] http://0.0.0.0:8888/?   token=7ae9e1bad56071170779dbe3851529c0d8e19b1669faffc4
-    （中略）
-    tensorflow-nv_1      |     Copy/paste this URL into your browser when you connect for the first time,
-    tensorflow-nv_1      |     to login with a token:
-    tensorflow-nv_1      |         http://0.0.0.0:8888/?token=7ae9e1bad56071170779dbe3851529c0d8e19b1669faffc4
-    ```
-
-    以上からわかることは
-    * コンテナの8888番ポートがホストの32778番ポートに割り当てられていること
-    * Jupyter Notebook のサーバは http://0.0.0.0:8888/?token=7ae9e1bad56071170779dbe3851529c0d8e19b1669faffc4 というURLで待ち受けていること
-    です．　ホスト側のWebブラウザからアクセスするには上記URLの8888番の部分を32778に置き換えます．
-
+    上の例の場合，
+    * コンテナの8888番ポートがホストの32816番ポートに，　コンテナの6006番がホストの32817番に割り当てられている
+    * Jupyter Notebook のサーバは http://0.0.0.0:32816 というURLでアクセスする
+    * Tensorboard のサーバは http://0.0.0.0:32817 というURLでアクセスする
 
 # 補足
 
