@@ -13,14 +13,14 @@ https://github.com/nmiri-nagoya-nsaito/docker-python-dev-nvidia
    以下のコマンドを実行するとカレントディレクトリに docker-python-dev-nvidia という名称のディレクトリができますので，そこに移動します．
 
     ```
-    git clone https://github.com/nmiri-nagoya-nsaito/docker-python-dev-nvidia.git
-    cd docker-python-dev-nvidia
+    $ git clone https://github.com/nmiri-nagoya-nsaito/docker-python-dev-nvidia.git
+    $ cd docker-python-dev-nvidia
     ```
 
 1. イメージをダウンロードする
 
     ```
-    docker-compose pull tensorflow-nv
+    $ docker-compose pull tensorflow-nv
     ```
     
     イメージをDockerHubからダウンロードします．ダウンロードが完了すると，実行を開始できます．
@@ -30,7 +30,7 @@ https://github.com/nmiri-nagoya-nsaito/docker-python-dev-nvidia
     コンテナのシェルに入る場合，そのためのスクリプトが用意してありますのでそれを使います．スクリプトの引数として， どのイメージを利用するか（python-dev-nvidia　とか　tensorflow-nv とか）を指定します．
 
     ```
-    ./start_shell tensorflow-nv
+    $ ./start_shell tensorflow-nv
     ```
     
     シェルから抜けるには exit コマンドを使います．シェルから抜けると，コンテナも停止します．
@@ -38,11 +38,11 @@ https://github.com/nmiri-nagoya-nsaito/docker-python-dev-nvidia
 1. tensorflowのコンテナを起動する．
 
     ```
-    ./start_tensorflow.sh
+    $ ./start_tensorflow.sh
     Creating network "dockerpythondevnvidia_default" with the default driver
-    Creating dockerpythondevnvidia_tensorflow-nv_1 ... 
+    Creating dockerpythondevnvidia_tensorflow-nv_1 ...
     Creating dockerpythondevnvidia_tensorflow-nv_1 ... done
-                    Name                     Command    State                        Ports                      
+    Name                     Command    State                        Ports                      
     ------------------------------------------------------------------------------------------------------------
     dockerpythondevnvidia_tensorflow-nv_1   /bin/bash   Up      0.0.0.0:32817->6006/tcp, 0.0.0.0:32816->8888/tcp
     ```
