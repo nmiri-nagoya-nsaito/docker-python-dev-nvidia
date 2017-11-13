@@ -21,19 +21,21 @@ RUN adduser --gecos ",,," --disabled-password $USER_NAME && \
     echo $USER_NAME ALL=NOPASSWD: ALL > /etc/sudoers.d/$USER_NAME
 
 ###
-### setup miniconda(as root)
+### setup anaconda(as root)
 ###
 ENV CONDA_DIR /opt/conda
 ENV PATH $CONDA_DIR/bin:$PATH
 
 WORKDIR /tmp
 RUN mkdir -p $CONDA_DIR && \
-    chown $USER_NAME $CONDA_DIR -R && \
     echo export PATH=$CONDA_DIR/bin:'$PATH' > /etc/profile.d/conda.sh && \
-    wget --quiet https://repo.continuum.io/miniconda/Miniconda3-4.3.30-Linux-x86_64.sh && \
-    echo "0b80a152332a4ce5250f3c09589c7a81 *Miniconda3-4.3.30-Linux-x86_64.sh" | md5sum -c - && \
-    /bin/bash Miniconda3-4.3.30-Linux-x86_64.sh -f -b -p $CONDA_DIR && \
-    rm Miniconda3-4.3.30-Linux-x86_64.sh
+    wget --quiet https://repo.continuum.io/archive/Anaconda3-5.0.1-Linux-x86_64.sh && \
+    echo "c989ecc8b648ab8a64731aaee9ed2e7e *Anaconda3-5.0.1-Linux-x86_64.sh" | md5sum -c - && \
+    /bin/bash Anaconda3-5.0.1-Linux-x86_64.sh -f -b -p $CONDA_DIR && \
+    rm Anaconda3-5.0.1-Linux-x86_64.sh && \
+    conda install -y python=3.5 && \
+    pip install --upgrade pip && \
+    pip install jupyter matplotlib
 
 ###
 ### configuration for jupyter notebook(as user)
@@ -46,3 +48,11 @@ RUN mkdir $USER_HOME/.jupyter && \
     echo c.NotebookApp.token = \'\' >> $USER_HOME/.jupyter/jupyter_notebook_config.py && \
     echo c.NotebookApp.password = \'\' >> $USER_HOME/.jupyter/jupyter_notebook_config.py && \
     echo c.NotebookApp.open_browser = False >> $USER_HOME/.jupyter/jupyter_notebook_config.py
+
+###
+### install pyenv to user's home directory (as user)
+###
+RUN git clone https://github.com/yyuu/pyenv.git $USER_HOME/.pyenv && \
+    eval echo 'export PYENV_ROOT=$USER_HOME/.pyenv' >> $USER_HOME/.profile && \
+    echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> $USER_HOME/.profile && \
+    echo 'if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi' >> $USER_HOME/.profile
