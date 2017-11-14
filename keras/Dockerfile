@@ -1,4 +1,4 @@
-FROM tensorflow
+FROM nmirinagoyansaito/tensorflow
 
 USER root
 
@@ -8,7 +8,7 @@ RUN pip install https://cntk.ai/PythonWheel/GPU/cntk-2.1-cp35-cp35m-linux_x86_64
     pip install keras
 
 USER $USER_NAME
-WORKDIR $USER_HOME
+WORKDIR /workdir
 
 # Set up .theanorc for CUDA
 RUN echo "[global]\ndevice=cuda\nfloatX=float32\noptimizer_including=cudnn\n[lib]\ncnmem=0.1\n[nvcc]\nfastmath=True" > $USER_HOME/.theanorc
