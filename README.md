@@ -17,7 +17,7 @@ NVIDIAより提供される Ubuntu 16.04 (Xenial) + CUDA8.0 + cuDNN 6.0 のイ�
 1. DockerHub からイメージを取得
 
     ```
-    $ docker pull nmirinagoyansaito/python-base
+    $ docker pull nmirinagoyansaito/python-base
     ```
     
     ローカルでイメージをビルドする場合は　git でこのリポジトリのソースをダウンロードし， docker build コマンドで作成します．
