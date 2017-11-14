@@ -29,9 +29,9 @@ NVIDIAより提供される Ubuntu 16.04 (Xenial) + CUDA8.0 + cuDNN 6.0 のイ�
     ```
 
 1. Jupyter　Notebook　を起動
-
+    
     ```
-    $ docker run --name python-base-jupyter -d -p 8888 -v <ホスト側のパス（絶対パス）>:/workdir python-base jupyter notebook --notebook-dir=/workdir --ip=0.0.0.0 --port=8888
+    $ docker run --name python-base-jupyter -d -p 8888 -v <ホスト側のパス（絶対パス）>:/workdir python-base jupyter notebook --notebook-dir=/workdir --ip=0.0.0.0 --port=8888
     ```
     
     Jupyter　Notebookがコンテナで起動します．　コンテナの 8888番ポートがホストマシンの空いているポート番号に割り当てられます．
@@ -45,7 +45,7 @@ NVIDIAより提供される Ubuntu 16.04 (Xenial) + CUDA8.0 + cuDNN 6.0 のイ�
     ```
     
     ここではホストの32772番に割り当てられていることがわかりますのでWebブラウザで ```http://0.0.0.0:32772``` にアクセスします．
-
+    
 1. 同じコンテナを使って別コマンドを利用する（bashの例）
 
     ```
