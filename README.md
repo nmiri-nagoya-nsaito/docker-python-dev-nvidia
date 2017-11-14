@@ -132,7 +132,7 @@ Jupyter のセル内で imoprt keras してもエラーは発生しません．
 !sudo /opt/conda/bin/pip install keras
 ```
 
-4. chainer
+### chainer
 
 python-base イメージを元に， chainer と cupy をインストールしたイメージです．
 
@@ -151,7 +151,7 @@ $ docker rm chainer-jupyter
 $ docker rmi nmirinagoyansaito/chainer
 ```
 
-5. theano
+### theano
 
 python-base イメージを元に，　theano および pygpu をインストールしたものです．
 
