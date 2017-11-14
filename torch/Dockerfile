@@ -1,4 +1,4 @@
-FROM python-base
+FROM nmirinagoyansaito/python-base
 MAINTAINER Naoki Saito <saito.naoki@nmiri.city.nagoya.jp>
 
 USER root
