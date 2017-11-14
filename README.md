@@ -31,7 +31,7 @@ NVIDIAより提供される Ubuntu 16.04 (Xenial) + CUDA8.0 + cuDNN 6.0 のイ�
 1. Jupyter　Notebook　を起動
 
     ```
-    $ docker run --name python-base-jupyter -d -p 8888 -v /Users/saito/work/docker-python-dev-nvidia/workdir/python-base:/workdir python-base jupyter notebook --notebook-dir=/workdir --ip=0.0.0.0 --port=8888
+    $ docker run --name python-base-jupyter -d -p 8888 -v <ホスト側のパス（絶対パス）>:/workdir python-base jupyter notebook --notebook-dir=/workdir --ip=0.0.0.0 --port=8888
     ```
     
     Jupyter　Notebookがコンテナで起動します．　コンテナの 8888番ポートがホストマシンの空いているポート番号に割り当てられます．
@@ -78,7 +78,7 @@ $ docker pull nmirinagoyansaito/tensorflow
 $ docker build -t nmirinagoyansaito/tensorflow tensorflow
 
 # イメージからコンテナ（のプログラム，ここでは tensorboard）を実行
-$ docker run --name tensorflow-jupyter -d -p 6006 -p 8888 -v /Users/saito/work/docker-python-dev-nvidia/workdir/tensorflow:/workdir nmirinagoyansaito/tensorflow jupyter notebook --notebook-dir=/workdir --ip=0.0.0.0 --port=8888
+$ docker run --name tensorflow-jupyter -d -p 6006 -p 8888 -v <ホスト側のパス（絶対パス）>:/workdir nmirinagoyansaito/tensorflow jupyter notebook --notebook-dir=/workdir --ip=0.0.0.0 --port=8888
 
 # 実行中コンテナの確認
 $ docker ps
@@ -107,7 +107,7 @@ $ docker rmi nmirinagoyansaito/tensorflow
 $ dicker pull nmirinagoyansaito/keras
 $ docker build -t nmirinagoyansaito/keras keras
 
-$ docker run --name keras-jupyter -d -p 6006 -p 8888 -v /Users/saito/work/docker-python-dev-nvidia/workdir/keras:/workdir nmirinagoyansaito/keras jupyter notebook --notebook-dir=/workdir --ip=0.0.0.0 --port=8888
+$ docker run --name keras-jupyter -d -p 6006 -p 8888 -v <ホスト側のパス（絶対パス）>:/workdir nmirinagoyansaito/keras jupyter notebook --notebook-dir=/workdir --ip=0.0.0.0 --port=8888
 
 $ docker ps
 CONTAINER ID        IMAGE                          COMMAND                  CREATED             STATUS              PORTS                                              NAMES
@@ -140,7 +140,7 @@ python-base イメージを元に， chainer と cupy をインストールし�
 $ dicker pull nmirinagoyansaito/chainer
 $ docker build -t nmirinagoyansaito/chainer chainer
 
-$ docker run --name chainer-jupyter -d -p 8888 -v /Users/saito/work/docker-python-dev-nvidia/workdir/chainer:/workdir nmirinagoyansaito/chainer jupyter notebook --notebook-dir=/workdir --ip=0.0.0.0 --port=8888
+$ docker run --name chainer-jupyter -d -p 8888 -v <ホスト側のパス（絶対パス）>:/workdir nmirinagoyansaito/chainer jupyter notebook --notebook-dir=/workdir --ip=0.0.0.0 --port=8888
 $ docker ps
 
 $ docker exec -it chainer-jupyter bash --login
@@ -159,7 +159,7 @@ python-base イメージを元に，　theano および pygpu をインストー
 $ docker pull nmirinagoyansaito/theano
 $ docker build -t nmirinagoyansaito/theano theano
 
-$ docker run --name theano-jupyter -d -p 8888 -v /Users/saito/work/docker-python-dev-nvidia/workdir/theano:/workdir nmirinagoyansaito/theano jupyter notebook --notebook-dir=/workdir --ip=0.0.0.0 --port=8888
+$ docker run --name theano-jupyter -d -p 8888 -v <ホスト側のパス（絶対パス）>:/workdir nmirinagoyansaito/theano jupyter notebook --notebook-dir=/workdir --ip=0.0.0.0 --port=8888
 $ docker ps
 
 $ docker exec -it theano-jupyter bash --login
